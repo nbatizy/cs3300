@@ -28,6 +28,9 @@ gem 'jbuilder', '~> 2.5'
 # Used for rspec
 gem 'mini_racer'
 
+# Use devise to require login
+gem 'devise'
+
 group :production do
   gem 'pg', '~> 0.21' # for Heroku deployment
   gem 'rails_12factor'
