@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.feature "Projects", type: :feature do
+  before do 
+    testuser = User.create(email: "test@testdomain.com", password: "foobar")
+    sign_in testuser
+    
+  end
+
   context "Create new project" do
     before(:each) do
       visit new_project_path
