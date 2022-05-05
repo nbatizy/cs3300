@@ -2,28 +2,32 @@
 
 <h1>Projects</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @projects.each do |project| %>
-      <tr>
-        <td><%= project.title %></td>
-        <td><%= project.description %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
 <br>
 
-<%= link_to 'New Project', new_project_path %>
+<div class="container">
+  <div class="row">
+    <% @projects.each do |project| %>
+      <div class="col-md-6">
+        <div class="card mb-4 box-shadow align-items-center">
+          <div class="card-body">
+            <p style="color:black" class="card-header"><%= project.title %></p>
+            <p style="color:black; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow:hidden; text-overflow:ellipsis; text-align:left" class="card-text"><%= project.description %></p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="links bg-secondary">
+                <%= link_to '| Show |', project %>
+                <% if user_signed_in? %>
+                  <%= link_to 'Edit |', edit_project_path(project) %>
+                  <%= link_to 'Destroy |', project, method: :delete, data: { confirm: 'Are you sure?' } %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div
+</div>
+
+<% if user_signed_in? %>
+  <%= link_to 'New Project', new_project_path %>
+<% end %>
